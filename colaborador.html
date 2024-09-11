@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colaborador - Sistema de Bater Ponto</title>
+    <link rel="stylesheet" href="colaborador.css">
+    <link rel="stylesheet" href="painel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="painel.js" defer></script>
+    <script src="colaborador.js" defer></script>
+
+
+
+</head>
+<body>
+    <header>
+        <div class="header-left">
+           <a href="painel.html">    
+            <div class="home-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+            </a>    
+            </div>
+
+        </div>
+
+        <h1 class="titulo_pagina">COLABORADORES</h1>
+
+        <div class="header-right">
+            <button id="menu-toggle">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    <div class="indicadores_usuario">
+        <div class="user">
+            <p>Usuários <strong class="strong_inativos">inativos</strong></p>
+            <h2 class="number">3</h2>
+        </div>
+        <div class="user">
+            <p>Usuários <strong class="strong_ativos">ativos</strong></p>
+            <h2 class="number">1</h2>
+        </div>
+        <div class="user">
+            <p>Usuários <strong class="strong_total">total</strong></p>
+            <h2 class="number">4</h2>
+        </div>
+    </div>
+
+    <hr> <!--linha horizontal-->
+
+  <!-- Botão para abrir o modal -->
+    <button class="cadastro_user" id="openModalBtn">[+] Cadastrar Colaborador</button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Cadastro de Colaborador</h2>
+            <form>
+                <label class="n" for="nome">Nome:</label>
+                <input class="caixa_form" type="text" id="nome" name="nome" required>
+
+                <label for="cpf">CPF:</label>
+                <input class="caixa_form" type="text" id="cpf" name="cpf" required>
+
+                <label for="rg">RG:</label>
+                <input class="caixa_form" type="text" id="rg" name="rg" required>
+
+                <label for="nascimento">Data de Nascimento:</label>
+                <input class="caixa_form" type="date" id="nascimento" name="nascimento" required>
+
+                <label for="cargaHoraria">Carga Horária:</label>
+                <input class="caixa_form" type="number" id="cargaHoraria" name="cargaHoraria" required>
+
+                <div>
+                    <label for="cargaHoraria">Carga Horária:</label>
+                    <input class="caixa_form" type="text" id="cargaHoraria" name="cargaHoraria">
+                  </div>
+              
+                  <!-- Botão para abrir o segundo modal -->
+                  <button id="openSecondModal">Adicionar Nova Jornada de Trabalho</button>
+                  
+                  <div class="button-container">
+                    <button type="submit">Salvar</button>
+                    <button type="reset">Apagar</button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Modal secundário -->
+              <div id="secondModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Adicionar nova jornada de trabalho</h2>
+                  
+                  <!-- Opções de periodicidade -->
+                  <div>
+                    <label>Periodicidade:</label>
+                    <button>Seg-Dom</button>
+                    <button>12/36</button>
+                    <button>Jornada Mensal</button>
+                    <button>Irregular</button>
+                  </div>
+              
+                  <!-- Opções de tipo e dados da jornada -->
+                  <div>
+                    <label>Tipo e dados da jornada:</label>
+                    <button>Fixa</button>
+                    <button>Intervalo Flexível</button>
+                    <button>Flexível</button>
+                  </div>
+              
+                  <!-- Formulário de entrada, intervalo e saída -->
+                  <div>
+                    <label for="entrada">Seg - Sex:</label>
+                    <input type="time" id="entrada" name="entrada">
+                    <input type="time" id="intervalo" name="intervalo">
+                    <input type="time" id="saida" name="saida">
+                  </div>
+              
+                  <!-- Nome da jornada -->
+                  <div>
+                    <label for="nomeJornada">Nome da Jornada:</label>
+                    <input type="text" id="nomeJornada" name="nomeJornada">
+                  </div>
+              
+                  <div class="button-container">
+                    <button type="submit">Criar jornada</button>
+                    <button type="reset">Cancelar</button>
+                  </div>
+                </div>
+              </div>    
+            
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <div class="table-container">
+        <div class="table-controls">
+            <input type="text" id="searchInput" placeholder="Pesquisar por nome...">
+            <select id="filterSelect">
+                <option value="">Filtrar por idade</option>
+                <option value="20-29">20-29</option>
+                <option value="30-39">30-39</option>
+                <option value="40-49">40-49</option>
+            </select>
+            <button id="downloadBtn">Baixar Planilha</button>
+        </div>
+    
+        <table id="excelTable" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Função</th>
+                    <th>Data Nascimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>João</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                </tr>
+                <!-- Mais linhas aqui -->
+            </tbody>
+        </table>
+    </div>
+    
+    </div> <!-- FINAL INDICADORES PAINEL-->
+
+
+    <nav id="sidebar-menu" class="hidden">
+        <button id="close-menu" class="close-btn">✖</button>
+        <div class="top-section">
+            <div class="user-profile">
+                <img src="img/usuario.png" alt="Foto do usuário">
+                <p>Analista Service Desk</p>
+            </div>
+            <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+        </div>
+
+        <ul class="menu-options">
+           <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+           <li id="ponto-dropdown">PONTO </li> 
+           <ul id="ponto-submenu" class="submenu hidden">
+            <a href="ponto.html"><li>Bater ponto</li> </a>
+            <li>Tratamento de ponto</li>
+                    <li>Relatório</li>
+                    <li>Painel de horas</li>
+                </ul>
+            </li>
+            <li>FÉRIAS</li>
+        </ul>
+
+        <div class="bottom-options">
+            <button id="settings">Ajuste</button>
+            <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+        </div>
+    </nav>
+
+
+</body>
+</html>

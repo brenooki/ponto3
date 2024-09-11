@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 50px;
+    justify-items: center;
+}
+
+body {
+    font-family: 'Poppins','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #1a8bba, #12273c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(4, 5, 5, 55);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+    font-weight: 1500;
+}
+
+.login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #0c1ae2ad;  
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0. 3s ease;          
+        }
+
+        .login-container input[type="email"]:focus,
+        .login-container input[type="password"]:focus {
+            border-color: #00c6ff;
+            box-shadow: 0 0 8px rgba(0, 198, 255, 0.5);
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #000002fb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, trasnform 0.3s ease;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #391d49;
+            transform: translateY(-2px);
+        }
+
+        .login-container input[type="submit"]:active {
+            background-color: #9d3ed4;
+            transform: translateY(1px);
+        }
+
+        .login-container p {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
