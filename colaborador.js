@@ -40,6 +40,12 @@ function limparFormulario() {
     form.reset(); // Reseta todos os campos do formulário
 }
 
+// Função para verificar se algum campo está preenchido
+function isFormularioPreenchido() {
+    const form = document.querySelector('form');
+    return Array.from(form.elements).some(input => input.value !== "");
+}
+
 // Abrir o modal
 const openModalBtn = document.getElementById('openModalBtn');
 const modal = document.getElementById('modal');
@@ -49,47 +55,31 @@ openModalBtn.addEventListener('click', () => {
     modal.style.display = 'flex';
 });
 
-// Fechar o modal ao clicar no 'X' e limpar o formulário
+// Fechar o modal ao clicar no 'X', perguntando se deseja sair caso algum campo esteja preenchido
 closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    limparFormulario(); // Limpa o formulário ao fechar o modal
-});
-
-// Fechar o modal ao clicar fora dele e limpar o formulário
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
+    if (isFormularioPreenchido()) {
+        const confirmExit = confirm('DESEJA REALMENTE SAIR? SE CONFIRMAR, TODOS OS DADOS SERÃO APAGADOS!');
+        if (confirmExit) {
+            limparFormulario(); // Limpa o formulário ao fechar o modal
+        }
+    } else {
         modal.style.display = 'none';
-        limparFormulario(); // Limpa o formulário ao fechar o modal
     }
 });
 
-// Abrir modal secundário ao clicar no botão
-document.getElementById("openSecondModal").onclick = function() {
-    document.getElementById("secondModal").style.display = "flex";
-};
-
-// Fechar modais ao clicar no X
+// Fechar modais ao clicar no X com a confirmação
 var closes = document.getElementsByClassName("close");
 for (var i = 0; i < closes.length; i++) {
     closes[i].onclick = function() {
-        this.parentElement.parentElement.style.display = "none";
-        limparFormulario(); // Limpa o formulário ao fechar o modal
-    }
-}
-
-// Fechar o modal se clicar fora do conteúdo
-window.onclick = function(event) {
-    var mainModal = document.getElementById("mainModal");
-    var secondModal = document.getElementById("secondModal");
-
-    if (event.target == mainModal) {
-      mainModal.style.display = "none";
-      limparFormulario(); // Limpa o formulário ao fechar o modal
-    }
-
-    if (event.target == secondModal) {
-      secondModal.style.display = "none";
-      limparFormulario(); // Limpa o formulário ao fechar o modal
+        if (isFormularioPreenchido()) {
+            const confirmExit = confirm('DESEJA REALMENTE SAIR? SE CONFIRMAR, TODOS OS DADOS SERÃO APAGADOS!');
+            if (confirmExit) {
+                this.parentElement.parentElement.style.display = "none";
+                limparFormulario(); // Limpa o formulário ao fechar o modal
+            }
+        } else {
+            this.parentElement.parentElement.style.display = "none";
+        }
     }
 }
 
@@ -144,17 +134,18 @@ function buscarCEP() {
         });
 }
 
-document.getElementById('noNumber').addEventListener('change', function() {
-    var numberField = document.getElementById('number');
-  
+// Função para desabilitar/habilitar o campo 'Número' baseado no checkbox
+document.getElementById("noNumber").addEventListener("change", function() {
+    const numberInput = document.getElementById("number");
+
     if (this.checked) {
-      numberField.value = '';  // Limpa o campo
-      numberField.classList.add('disabled');  // Aplica o estilo desativado
-      numberField.setAttribute('disabled', 'disabled');  // Desabilita o input
-      numberField.removeAttribute('required');  // Remove a obrigatoriedade
+        numberInput.setAttribute('disabled', 'disabled');  // Desabilita o campo
+        numberInput.removeAttribute('required');           // Remove a obrigatoriedade
+        numberInput.value = '';                            // Limpa o valor existente
+        numberInput.style.backgroundColor = "#e0e0e0";     // Define a cor cinza no campo desabilitado
     } else {
-      numberField.classList.remove('disabled');  // Remove o estilo desativado
-      numberField.removeAttribute('disabled');  // Habilita o input
-      numberField.setAttribute('required', 'required');  // Torna obrigatório
+        numberInput.removeAttribute('disabled');           // Habilita o campo
+        numberInput.setAttribute('required', 'required');  // Torna obrigatório novamente
+        numberInput.style.backgroundColor = "";            // Remove o fundo cinza
     }
-  });
+});
