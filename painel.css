@@ -10,25 +10,27 @@ body {
     background-color: #f4f4f4;
     color: #333;
     transition: background-color 0.3s, color 0.3s;
-    margin: 0px;
+    margin: 0;
 }
 
 /* Estilo para o cabeçalho */
 header {
-    background: linear-gradient(to right, #1a8bba, #12273c);;
+    background: linear-gradient(to right, #1a8bba, #12273c);
     color: white;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
 .titulo_pagina {
-    text-align: center;
     font-size: 2em;
+    width: 100%;
 }
 
-.header-left {
+.header-left, .header-right {
     display: flex;
     align-items: center;
 }
@@ -44,7 +46,7 @@ header {
 }
 
 .header-right button {
-    background: none;   
+    background: none;
     border: none;
     color: white;
     font-size: 30px;
@@ -74,14 +76,13 @@ nav.visible {
     opacity: 1;
 }
 
-/* Adiciona o desfoque na tela principal quando o menu está aberto */
 .main-content.blur {
     filter: blur(5px); /* Aplica o efeito de desfoque */
     transition: filter 0.3s ease-in-out;
 }
 
 .main-content.shifted {
-    margin-right: 300px; /* Move a tela principal para a esquerda, criando espaço para o menu */
+    margin-right: 300px;
     transition: margin-right 0.3s ease-in-out;
 }
 
@@ -102,7 +103,6 @@ nav.visible {
     color: #E74C3C;
 }
 
-/* Topo do menu lateral */
 .top-section {
     text-align: center;
     margin-top: 20%;
@@ -139,7 +139,6 @@ nav.visible {
     color: #F39C12;
 }
 
-/* Estilização das opções do menu */
 .menu-options {
     list-style: none;
     margin-top: 30px;
@@ -165,7 +164,6 @@ nav.visible {
     transform: translateX(5px);
 }
 
-/* Estilo do submenu */
 .submenu {
     list-style: none;
     margin-left: 20px;
@@ -191,7 +189,6 @@ nav.visible {
     background-color: #1ABC9C;
 }
 
-/* Opções da parte inferior */
 .bottom-options {
     position: absolute;
     bottom: 20px;
@@ -223,7 +220,6 @@ nav.visible {
     color: #ECF0F1;
 }
 
-/* Modo escuro */
 body.dark-mode {
     background-color: #554b4b8e;
     color: #000000;
@@ -243,6 +239,24 @@ nav.dark-mode {
 
 /* Ajustes para telas menores */
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .titulo_pagina {
+        font-size: 1.5em;
+    }
+
+    .header-left img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .user-info {
+        font-size: 1.2vh;
+    }
+
     nav {
         width: 100%;
         padding: 15px;
@@ -272,18 +286,17 @@ nav.dark-mode {
         padding: 8px;
     }
 
-    /* Em telas menores, a margem da tela principal será menor */
     .main-content.shifted {
         margin-right: 100%;
     }
 }
 
-
+/* Dashboard */
 .dashboard {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px;   
+    padding: 20px;
 }
 
 .indicator {
@@ -338,5 +351,8 @@ nav.dark-mode {
     .indicator {
         width: 100%;
     }
-}
 
+    .info p, .info h2, .info a {
+        font-size: 12px;
+    }
+}

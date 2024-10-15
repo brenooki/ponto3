@@ -44,7 +44,7 @@ body {
 /* Seção direita (login) */
 .login-container {
     width: 60%;
-    padding: 30px;
+    padding: 30px;  
     background-color: #ffffff;
     text-align: center;
     display: flex;
