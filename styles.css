@@ -16,7 +16,7 @@ body {
 /* Contêiner principal */
 .main-container {
     display: flex;
-    width: 80%;  /* Mantém um tamanho bom sem esticar */
+    width: 59%;  /* Mantém um tamanho bom sem esticar */
     max-width: 1000px;
     height: auto;
     background-color: white;
