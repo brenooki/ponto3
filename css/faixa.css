@@ -40,6 +40,14 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
+.titulojornada{
+    margin-top: 5%;
+}
+
+.tipojornada {
+    margin-bottom: 5%;
+}
+
 /* Limitar o corpo do modal e ajustar o conteúdo */
 .modal-body {
     flex-grow: 1;
@@ -62,10 +70,13 @@ body {
 }
 
 .close {
-    color: #999;
-    float: right;
-    font-size: 25px;
-    cursor: pointer;
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    
 }
 
 .close:hover {
@@ -131,6 +142,14 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+
+.modal-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        width: 100%;
+}
+
 
 .save-btn {
     background-color: #28a745;
