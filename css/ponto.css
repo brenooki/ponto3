@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin: auto; /* Centraliza verticalmente nas telas menores */
+    margin-top: 6%;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .time {
+    font-size: 2rem;
+    margin-top: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ponto-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ponto-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .map {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+  }
+  
+  @media (max-width: 768px) {
+    .time {
+      font-size: 1.5rem;
+    }
+  
+    .ponto-btn {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+  
+    .map {
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .time {
+      font-size: 1.3rem;
+    }
+  
+    .ponto-btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  
+    .map {
+      height: 200px;
+    }
+  }
+  

@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel - Sistema de Bater Ponto</title>
-    <link rel="stylesheet" href="painel.css">
-    <script src="painel.js" defer></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/painel.css">
+
+    <!-- SCRIPT -->
+    <script src="js/padrao.js" defer></script>
 </head>
+
+
+
+
 <body>
     <header>
         <div class="header-left">
@@ -25,6 +34,40 @@
             </button>
         </div>
     </header>
+
+    
+</div> <!-- FINAL INDICADORES PAINEL-->
+
+
+<nav id="sidebar-menu" class="hidden">
+    <button id="close-menu" class="close-btn">✖</button>
+    <div class="top-section">
+        <div class="user-profile">
+            <img src="img/usuario.png" alt="Foto do usuário">
+            <p>Analista Service Desk</p>
+        </div>
+        <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+    </div>
+
+    <ul class="menu-options">
+        <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+        <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
+        <li id="ponto-dropdown">PONTO </li> 
+        <ul id="ponto-submenu" class="submenu hidden">
+            <a href="ponto.html"><li>Bater ponto</li> </a>
+            <li>Tratamento de ponto</li>
+                <li>Relatório</li>
+                <li>Painel de horas</li>
+            </ul>
+        </li>
+        <li>FÉRIAS</li>
+    </ul>
+
+    <div class="bottom-options">
+        <button id="settings">Ajuste</button>
+       <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+    </div>
+</nav>
 
     <div class="dashboard"> <!-- INICIO INDICADORES PAINEL-->
         <div class="indicator"> <!--CLASSE PARA TODOS OS INDICADORES-->
@@ -69,38 +112,6 @@
 
 
     
-    </div> <!-- FINAL INDICADORES PAINEL-->
-
-
-    <nav id="sidebar-menu" class="hidden">
-        <button id="close-menu" class="close-btn">✖</button>
-        <div class="top-section">
-            <div class="user-profile">
-                <img src="img/usuario.png" alt="Foto do usuário">
-                <p>Analista Service Desk</p>
-            </div>
-            <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
-        </div>
-
-        <ul class="menu-options">
-            <a href="colaborador.html"> <li>COLABORADORES</li> </a>
-            <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
-            <li id="ponto-dropdown">PONTO </li> 
-            <ul id="ponto-submenu" class="submenu hidden">
-                <a href="ponto.html"><li>Bater ponto</li> </a>
-                <li>Tratamento de ponto</li>
-                    <li>Relatório</li>
-                    <li>Painel de horas</li>
-                </ul>
-            </li>
-            <li>FÉRIAS</li>
-        </ul>
-
-        <div class="bottom-options">
-            <button id="settings">Ajuste</button>
-           <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
-        </div>
-    </nav>
 
     <main>
         <!-- Conteúdo da página "Painel" virá aqui -->
