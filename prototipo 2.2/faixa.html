@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faixa - Sistema de Bater Ponto</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/faixa.css">
+    <link rel="stylesheet" href="css/padrao.css">
+
+    <!-- ICONE HOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- SCRIPT -->
+    <script src="js/padrao.js" defer></script>
+    <script src="js/faixa.js" defer></script>
+
+    <!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Hover.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"/>
+
+<!-- Perfect Scrollbar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+
+
+</head>
+
+
+<body>
+
+    <header>
+     <!-- Saudação -->
+     <div class="header-left">
+        <a href="painel.html">    
+                <div class="home-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+            </a>    
+        </div>
+
+        <h1 class="titulo_pagina">FAIXA HORARIO</h1>
+
+        <!-- ACESSO AO MENU -->
+        <div class="header-right">
+            <button id="menu-toggle">
+                ☰
+            </button>
+        </div>
+
+    
+</div> <!-- FINAL INDICADORES PAINEL-->
+
+
+<nav id="sidebar-menu" class="hidden">
+    <button id="close-menu" class="close-btn">✖</button>
+    <div class="top-section">
+        <div class="user-profile">
+            <img src="img/usuario.png" alt="Foto do usuário">
+            <p>Analista Service Desk</p>
+        </div>
+        <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+    </div>
+
+    <ul class="menu-options">
+        <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+        <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
+        <li id="ponto-dropdown">PONTO </li> 
+        <ul id="ponto-submenu" class="submenu hidden">
+            <a href="ponto.html"><li>Bater ponto</li> </a>
+            <li>Tratamento de ponto</li>
+                <li>Relatório</li>
+                <li>Painel de horas</li>
+            </ul>
+        </li>
+        <li>FÉRIAS</li>
+        <a href="empresa.html"><li>EMPRESA</li></a>
+
+    </ul>
+
+    <div class="bottom-options">
+        <a href="ajustes.html"><button id="settings">Ajuste</button></a>
+       <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+    </div>
+</nav>
+
+</header>
+
+<main>
+  
+
+    <!-- Tabela -->
+    <section class="container-tabela">
+        <table class="tabela-jornada">
+            <thead>
+                <tr>
+                    <th>Nome faixa</th>
+                    <th>Periodicidade</th>
+                    <th>Tipo Jornada</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Faixa 1</td>
+                    <td>Mensal</td>
+                    <td>Integral</td>
+                    <td><button class="btn-acao">Editar</button></td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+        </table>
+    </section>
+
+<!-- Botão para abrir o modal -->
+<button id="openModal">[+] CADASTRAR JORNADA</button>
+
+<!-- Modal -->
+<div id="jornadaModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Adicionar nova jornada de trabalho</h2>
+
+    <!-- Periodicidade -->
+    <label>Periodicidade:</label>
+    <div>
+      <button class="period-btn" data-type="seg-dom">Seg-Dom</button>
+      <button class="period-btn" data-type="12-36">12/36</button>
+      <button class="period-btn" data-type="mensal">Jornada Mensal</button>
+      <button class="period-btn" data-type="irregular">Irregular</button>
+    </div>
+
+    <!-- Tipo de jornada -->
+    <label class="titulojornada">Tipo de jornada:</label>
+    <div id="tipoJornada" class="tipojornada">
+      <button class="tipo-btn" data-type="fixa">Fixa</button>
+      <button class="tipo-btn" data-type="intervalo-flexivel">Intervalo Flexível</button>
+      <button class="tipo-btn" data-type="flexivel">Flexível</button>
+    </div>
+
+    <!-- Formulários dinâmicos -->
+    <div id="jornadaForm"></div>
+
+    <!-- Nome da Jornada -->
+    <label for="nomeJornada">Nome da Jornada:</label>
+    <input type="text" id="nomeJornada" placeholder="Insira o nome da jornada">
+
+    <!-- Botões de ação -->
+    <div class="modal-actions">
+      <button id="deleteJornada" class="delete-btn">Excluir</button>
+      <button id="saveJornada" class="save-btn">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<body>

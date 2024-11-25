@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Sistema de Bater Ponto</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/painel.css">
+
+    <!-- SCRIPT -->
+    <script src="js/padrao.js" defer></script>
+</head>
+
+
+
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="img/logo.png" alt="Logo empresa">
+            <div class="user-info">
+                <h1>Olá, Brendo!</h1>
+                <p>30 de agosto de 2024</p>
+            </div>
+        </div>
+
+        <h1 class="titulo_pagina">PAINEL</h1>
+
+        <div class="header-right">
+            <button id="menu-toggle">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    
+</div> <!-- FINAL INDICADORES PAINEL-->
+
+
+<nav id="sidebar-menu" class="hidden">
+    <button id="close-menu" class="close-btn">✖</button>
+    <div class="top-section">
+        <div class="user-profile">
+            <img src="img/usuario.png" alt="Foto do usuário">
+            <p>Analista Service Desk</p>
+        </div>
+        <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+    </div>
+
+    <ul class="menu-options">
+        <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+        <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
+        <li id="ponto-dropdown">PONTO </li> 
+        <ul id="ponto-submenu" class="submenu hidden">
+            <a href="ponto.html"><li>Bater ponto</li> </a>
+            <li>Tratamento de ponto</li>
+                <li>Relatório</li>
+                <li>Painel de horas</li>
+            </ul>
+        </li>
+        <li>FÉRIAS</li>
+        <a href="empresa.html"><li>EMPRESA</li></a>
+    </ul>
+
+    <div class="bottom-options">
+        <a href="ajustes.html"><button id="settings">Ajuste</button></a>
+       <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+    </div>
+</nav>
+
+    <div class="dashboard"> <!-- INICIO INDICADORES PAINEL-->
+        <div class="indicator"> <!--CLASSE PARA TODOS OS INDICADORES-->
+           <img class="icon" src="img/bateramponto.png" alt="icone de bateram o ponto">
+                <div class="info">
+                    <p>BATERAM O PONTO</p>
+                    <h2>2/10</h2>
+                    <a href="#">Colaboradores</a>
+                </div>
+            </div>
+
+    <div class="indicator">
+        <img class="icon" src="img/ferias.png" alt="icone de ferias">
+             <div class="info">
+                <p>SOLICITAÇÕES DE FÉRIAS PENDENTES </p> 
+                <h2>3</h2>
+                <a href="#">Gerenciar solicitações</a>
+            </div>
+         </div>
+
+    <div class="indicator">
+        <img class="icon" src="img/naobateramponto.png" alt="icone nao bateram o ponto">
+             <div class="info">
+                <p>NÃO BATERAM O PONTO</p>
+                <h2>8</h2>
+                <a href="#">Colaboradores</a>
+            </div>
+        </div>
+
+    <div class="indicator">
+        <img class="icon" src="img/ausenciaesperada.png" alt="icone de ausencia esperada">
+            <div class="info">
+                <p>AUSÊNCIA ESPERADA</p>
+                <h2>1</h2>
+                <a href="#">Colaboradores</a>
+            </div>
+
+    </div>
+
+
+
+
+
+    
+
+    <main>
+        <!-- Conteúdo da página "Painel" virá aqui -->
+    </main>
+</body>
+</html>

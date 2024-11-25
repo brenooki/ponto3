@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colaborador - Sistema de Bater Ponto</title>
+
+    <!--CSS -->
+    <link rel="stylesheet" href="css/colaborador.css">
+    <link rel="stylesheet" href="css/padrao.css">
+    
+
+    <!-- ICONE HOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+    <!-- Incluindo bibliotecas JS -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+    <!-- Incluindo JavaScript -->
+    <script src="js/padrao.js" defer></script>
+    <script src="js/colaborador.js" defer></script>  
+
+</head>
+
+
+<body><!-- INICIO BODDY -->
+        <header><!-- INICIO CABEÇALHO -->
+
+            <!-- Saudação -->
+            <div class="header-left">
+            <a href="painel.html">    
+                    <div class="home-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    </a>    
+            </div>
+
+            <h1 class="titulo_pagina">COLABORADORES</h1>
+
+            <!-- ACESSO AO MENU -->
+            <div class="header-right">
+                <button id="menu-toggle">
+                    ☰
+                </button>
+            </div>
+            
+            <nav id="sidebar-menu" class="hidden">
+                <button id="close-menu" class="close-btn">✖</button>
+                <div class="top-section">
+                    <div class="user-profile">
+                        <img src="img/usuario.png" alt="Foto do usuário">
+                        <p>Analista Service Desk</p>
+                    </div>
+                    <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+                </div>
+
+                <ul class="menu-options">
+                <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+                <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
+                <li id="ponto-dropdown">PONTO </li> 
+                <ul id="ponto-submenu" class="submenu hidden">
+                    <a href="ponto.html"><li>Bater ponto</li> </a>
+                    <li>Tratamento de ponto</li>
+                            <li>Relatório</li>
+                            <li>Painel de horas</li>
+                        </ul>
+                    </li>
+                    <li>FÉRIAS</li>
+                    <a href="empresa.html"><li>EMPRESA</li></a>
+
+                </ul>
+
+                <div class="bottom-options">
+                    <a href="ajustes.html"><button id="settings">Ajuste</button></a>
+                    <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+                </div>
+            </nav>
+
+        </header> <!-- FINAL CABEÇALHO -->
+
+        <section class="indicadores_usuarios">
+            <div class="conteiner_ativos">
+                <div class="subtitles">
+                    <p class="subtitle">Usuários ATIVOS</p>
+                </div>
+                <div class="number">103</div>
+            </div>
+            <div class="conteiner_inativos">
+                <div class="subtitles">
+                    <p class="subtitle">Usuários INATIVOS</p>
+                </div>
+                <div class="number">37</div>
+            </div>
+            <div class="conteiner_total">
+                <div class="subtitles">
+                    <p class="subtitle">Usuários TOTAL</p>
+                </div>
+                <div class="number">140</div>
+            </div>
+        </section>
+        
+    
+
+  <!-- Botão para abrir o modal -->
+    <button class="cadastro_user" id="openModalBtn">[+] Cadastrar Colaborador</button>
+
+    <div class="table-container">
+        <div class="table-controls">
+            <input type="text" id="searchInput" placeholder="Pesquisar por nome...">
+
+            <!-- SELEÇÃO DO FILTRO POR STATUS -->
+            <select id="filterSelect">
+                <option value="">Todos</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+            </select>
+            
+            
+            <button id="downloadBtn">Baixar Planilha</button>
+        </div>
+    
+        <table id="excelTable" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Função</th>
+                    <th>Data Nascimento</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vinicios</td>
+                    <td>125.235.758-75</td>
+                    <td>Ativo</td>
+                    <td>Email@gmail.com</td>
+                    <td>62 99325-3025</td>
+                    <td>Analista service desk</td>
+                    <td>01/03/1999</td>
+                    <td>
+                        <button class="edit-btn" data-row="0"><i class="fa fa-pencil"></i></button>
+                        <button class="pause-btn" data-row="0"><i class="fa fa-pause"></i></button>
+                    </td>
+                </tr>
+                <!-- Repetir estrutura para demais linhas -->
+            </tbody>
+        </table>
+
+
+                <!-- Mais linhas aqui -->
+            </tbody>
+        </table>
+    </div>
+    
+    </div> <!-- FINAL INDICADORES PAINEL-->
+
+
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+
+            <!-- Nome do modal -->
+            <h2 class="title_modal">Cadastro de Colaborador</h2>
+
+
+            
+
+    <form><!-- INICIO FORM -->
+
+        <!-- Dados pessoais -->
+        <h3 class="sub-title_modal">Dados pessoais</h3>
+
+        <label class="n" for="nome">Nome:</label>
+        <input class="caixa_form" type="text" id="nome" name="nome" required>
+
+        <label for="nascimento">Data de Nascimento:</label>
+        <input class="caixa_form" type="date" id="nascimento" name="nascimento" required>
+
+            <label for="naturalidade">Naturalidade:</label>
+            <select class="caixa_form" id="naturalidade" name="naturalidade">
+              <option value="">Selecione sua naturalidade</option>
+              <option value="argentina">Argentina</option>
+              <option value="bolivia">Bolívia</option>
+              <option value="brasil">Brasil</option>
+              <option value="chile">Chile</option>
+              <option value="colombia">Colômbia</option>
+              <option value="equador">Equador</option>
+              <option value="guiana">Guiana</option>
+              <option value="paraguai">Paraguai</option>
+              <option value="peru">Peru</option>
+              <option value="suriname">Suriname</option>
+              <option value="uruguai">Uruguai</option>
+              <option value="venezuela">Venezuela</option>
+              <option value="guiana_francesa">Guiana Francesa (território)</option>
+            </select>
+        
+
+        <label for="estado_civil">Estado civil:</label>
+        <select class="caixa_form" id="estado_civil" name="estado_civil">
+            <option value="solteiro">Solteiro(a)</option>
+            <option value="casado">Casado(a)</option>
+            <option value="divorciado">Divorciado(a)</option>
+           </select>
+
+        <label for="cpf">CPF:</label>
+        <input class="caixa_form" type="text" id="cpf" name="cpf" required>
+
+        <label for="rg">RG:</label>
+        <input class="caixa_form" type="text" id="rg" name="rg" required>
+
+        <label for="orgao-expedidor">Órgão Expedidor do RG:</label>
+        <select class="caixa_form" id="orgao-expedidor" name="orgao-expedidor">
+              <option value="">Selecione o órgão expedidor</option>
+              <option value="ssp">SSP - Secretaria de Segurança Pública (presente em todos os estados)</option>
+              <option value="detran">DETRAN - Departamento Estadual de Trânsito</option>
+              <option value="pf">PF - Polícia Federal</option>
+              <option value="policia-militar">Polícia Militar</option>
+              <option value="corpo-bombeiros">Corpo de Bombeiros</option>
+              <option value="ma">MA - Ministério da Aeronáutica</option>
+              <option value="me">ME - Ministério do Exército</option>
+              <option value="mma">MMA - Ministério da Marinha</option>
+              <option value="cnig">CNIG - Conselho Nacional de Imigração</option>
+              <option value="crt">CRT - Conselho Regional de Técnicos</option>
+              <option value="cra">CRA - Conselho Regional de Administração</option>
+              <option value="crea">CREA - Conselho Regional de Engenharia e Agronomia</option>
+              <option value="crm">CRM - Conselho Regional de Medicina</option>
+              <option value="oab">OAB - Ordem dos Advogados do Brasil</option>
+            </select>
+
+         <!-- Contato/endereço -->
+            <h3 class="sub-title_modal">Contato/endereço</h3>
+
+         <label for="email">E-mail:</label>
+         <input class="caixa_form" type="email" id="email" name="email" required>
+
+         <label for="celular">Número de Celular:</label>
+         <input class="caixa_form" type="text" id="celular" name="celular" maxlength="15" placeholder="(00) 00000-0000" oninput="formatarCelular(this)">
+
+         <label for="cep">CEP:</label>
+            <div id="cep-container">
+            <input type="text" id="cep" name="cep" maxlength="9" placeholder="00000-000">
+            <button type="button" onclick="buscarCEP()">
+                <i class="fas fa-lightbulb"></i>
+            </button>
+            </div>
+            
+        <label for="pais">País:</label>
+        <input class="caixa_form" type="text" id="pais" name="pais" readonly>
+            
+        <label for="estado">Estado:</label>
+        <input class="caixa_form" type="text" id="estado" name="estado" readonly>
+            
+        <label for="municipio">Município:</label>
+        <input class="caixa_form" type="text" id="municipio" name="municipio" readonly>
+            
+        <label for="bairro">Bairro:</label>
+        <input class="caixa_form" type="text" id="bairro" name="bairro" readonly>
+            
+        <label for="rua">Rua:</label>
+        <input class="caixa_form" type="text" id="rua" name="rua" readonly>
+            
+        
+            <label for="number">Número:</label>
+<input class="caixa_form" type="text" id="number" name="number" required>
+
+<div class="checkbox-container">
+    <label for="noNumber" class="checkbox-label">SEM NÚMERO (S/N)</label>
+    <input type="checkbox" id="noNumber">
+</div>
+       
+        <label for="complement">Complemento:</label>
+        <input type="text" id="complement" name="complement">
+
+        <!-- Configurações -->
+        <h3 class="sub-title_modal">Configurações/Acesso</h3>
+
+        <label class="n" for="faixa">Faixa de horário:</label>
+        <input class="caixa_form" id="faixa" name="faixa" required>
+
+        <label class="tipo-usuario" for="tipo-usuario">Tipo de usuário:</label>
+        <select id="tipo-usuario" name="tipo-usuario">
+            <option value="Comum">Comum</option>
+            <option value="Master">Master</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+        <label class="n" for="user">usuário:</label>
+        <input class="caixa_form" type="text" id="user" name="user" required>
+
+        <label class="n" for="senha">Senha:</label>
+        <input class="caixa_form" type="password" id="senha" name="senha " required>
+
+        <div class="button-container">
+            <button type="reset">Apagar</button>
+            <button type="submit">Salvar</button>
+            
+        </div>
+
+
+        </form><!-- FINAL FORM -->
+        
+
+                 
+
+    </body>
+    </html>

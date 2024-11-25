@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponto - Sistema de Bater Ponto</title>
+
+<!--inicio cabeçalho e corpo-->
+    <link rel="stylesheet" href="colaborador.css">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/ponto.css">
+
+    <!-- ICONE HOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <!--SCRIPT -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_API&callback=initMap" async defer></script>
+    <script src="padrao.js" defer></script>
+    <script src="ponto.js" defer></script>
+</head>
+
+
+<body>
+    <header>
+        <div class="header-left">
+           <a href="painel.html">    
+            <div class="home-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+            </a>    
+            </div>
+
+        </div>
+
+        <h1 class="titulo_pagina">PONTO</h1>
+
+        <div class="header-right">
+            <button id="menu-toggle">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    <nav id="sidebar-menu" class="hidden">
+        <button id="close-menu" class="close-btn">✖</button>
+        <div class="top-section">
+            <div class="user-profile">
+                <img src="img/usuario.png" alt="Foto do usuário">
+                <p>Analista Service Desk</p>
+            </div>
+            <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+        </div>
+
+        <ul class="menu-options">
+           <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+           <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
+          <li id="ponto-dropdown">PONTO </li> 
+                <ul id="ponto-submenu" class="submenu hidden">
+                    <a href="ponto.html"><li>Bater ponto</li> </a>
+                    <li>Tratamento de ponto</li>
+                    <li>Relatório</li>
+                    <li>Painel de horas</li>
+                </ul>
+            </li>
+            <li>FÉRIAS</li>
+            <a href="empresa.html"><li>EMPRESA</li></a>
+
+        </ul>
+
+        <div class="bottom-options">
+          <a href="ajustes.html"><button id="settings">Ajuste</button></a>
+          <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+        </div>
+    </nav>
+<!--FINAL cabeçalho-->
+
+
+<div class="container">
+    <div class="header">
+      <h1>Sistema de Ponto</h1>
+      <div id="currentTime" class="time"></div>
+    </div>
+
+    <div class="content">
+      <button class="ponto-btn" onclick="openModal()">Bater Ponto</button>
+      <div id="map" class="map"></div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="pontoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>BATER O PONTO?</p>
+      <button class="confirm-btn" onclick="confirmPonto()">SIM</button>
+    </div>
+  </div>
+
+  <script>
+    // Função para mostrar o horário atual
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    setInterval(updateTime, 1000); // Atualiza a cada segundo
+
+    // Função para inicializar o mapa com localização do usuário
+    function initMap() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: userLocation
+          });
+          new google.maps.Marker({
+            position: userLocation,
+            map: map
+          });
+        }, (error) => {
+          handleLocationError(error);
+        });
+      } else {
+        alert("Geolocalização não é suportada pelo seu navegador.");
+      }
+    }
+
+    // Função para abrir o modal
+    function openModal() {
+      document.getElementById('pontoModal').style.display = 'block';
+    }
+
+    // Função para fechar o modal
+    function closeModal() {
+      document.getElementById('pontoModal').style.display = 'none';
+    }
+
+    // Função para confirmar o ponto
+    function confirmPonto() {
+      closeModal();
+      alert("Ponto batido às " + document.getElementById('currentTime').textContent);
+    }
+
+    // Função para lidar com erros de localização
+    function handleLocationError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          alert("Permissão de geolocalização negada pelo usuário.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Localização indisponível.");
+          break;
+        case error.TIMEOUT:
+          alert("Tempo de resposta esgotado.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("Erro desconhecido.");
+          break;
+      }
+    }
+  </script> 
+
+</body>
+</html>
