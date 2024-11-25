@@ -12,20 +12,20 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
     });
 });
 
-// Função de filtro por idade
+// Função de filtro por status
 document.getElementById('filterSelect').addEventListener('change', function() {
-    const filter = this.value;
+    const filter = this.value.toLowerCase(); // Obtém o valor do filtro e converte para minúsculas
     const rows = document.querySelectorAll('#excelTable tbody tr');
 
     rows.forEach(row => {
-        const cell = row.getElementsByTagName('td')[2];
+        const cell = row.getElementsByTagName('td')[2]; // Coluna "Status"
         if (cell) {
-            const age = parseInt(cell.textContent);
-            const [min, max] = filter.split('-').map(Number);
-            row.style.display = (!filter || (age >= min && age <= max)) ? '' : 'none';
+            const status = cell.textContent.toLowerCase(); // Converte o texto do status para minúsculas
+            row.style.display = (!filter || status.includes(filter)) ? '' : 'none'; // Mostra ou oculta a linha
         }
     });
 });
+
 
 // Função de download
 document.getElementById('downloadBtn').addEventListener('click', function() {
@@ -149,3 +149,69 @@ document.getElementById("noNumber").addEventListener("change", function() {
         numberInput.style.backgroundColor = "";            // Remove o fundo cinza
     }
 });
+
+
+// Seleciona todos os botões de edição
+const editButtons = document.querySelectorAll('.edit-btn');
+
+// Função para preencher o formulário do modal com os dados do colaborador
+function preencherFormulario(dados) {
+    document.getElementById('nome').value = dados.nome || '';
+    document.getElementById('nascimento').value = dados.nascimento || '';
+    document.getElementById('naturalidade').value = dados.naturalidade || '';
+    document.getElementById('estado_civil').value = dados.estadoCivil || '';
+    document.getElementById('cpf').value = dados.cpf || '';
+    document.getElementById('rg').value = dados.rg || '';
+    document.getElementById('orgao-expedidor').value = dados.orgaoExpedidor || '';
+    document.getElementById('email').value = dados.email || '';
+    document.getElementById('celular').value = dados.celular || '';
+    document.getElementById('cep').value = dados.cep || '';
+    document.getElementById('pais').value = dados.pais || '';
+    document.getElementById('estado').value = dados.estado || '';
+    document.getElementById('municipio').value = dados.municipio || '';
+    document.getElementById('bairro').value = dados.bairro || '';
+    document.getElementById('rua').value = dados.rua || '';
+    document.getElementById('number').value = dados.numero || '';
+    document.getElementById('complement').value = dados.complemento || '';
+    document.getElementById('faixa').value = dados.faixa || '';
+    document.getElementById('tipo-usuario').value = dados.tipoUsuario || 'Comum';
+    document.getElementById('user').value = dados.usuario || '';
+    document.getElementById('senha').value = dados.senha || '';
+}
+
+// Adiciona evento aos botões de edição
+editButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const colaboradorId = button.getAttribute('data-id');
+
+        // Simula uma chamada para obter dados do colaborador (substitua com seu backend)
+        const dadosColaborador = buscarDadosColaborador(colaboradorId);
+
+        // Preenche o formulário com os dados recebidos
+        preencherFormulario(dadosColaborador);
+
+        // Abre o modal
+        modal.style.display = 'flex';
+    });
+});
+
+
+// INTEGRA O MODAL COM O BACK END
+function buscarDadosColaborador(id) {
+    return fetch(`/api/colaborador/${id}`)
+        .then(response => response.json())
+        .catch(error => {
+            console.error('Erro ao buscar colaborador:', error);
+            return {};
+        });
+}
+
+
+// RESET DO FORMULARIO
+
+function limparFormulario() {
+    document.querySelectorAll('.caixa_form').forEach(input => {
+        input.value = '';
+    });
+    document.getElementById('noNumber').checked = false;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuste - Sistema de Bater Ponto</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/ajustes.css">
+
+    <!-- SCRIPT -->
+    <script src="js/ajustes.js" defer></script>
+    <script src="js/padrao.js" defer></script>
+
+
+    <!-- ICONE HOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+
+
+
+<body>
+    <header>
+        <div class="header-left">
+            <a href="painel.html">    
+                    <div class="home-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    </a>    
+            </div>
+
+        <h1 class="titulo_pagina">AJUSTE</h1>
+
+        <div class="header-right">
+            <button id="menu-toggle">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    
+</div> <!-- FINAL INDICADORES PAINEL-->
+
+
+<nav id="sidebar-menu" class="hidden">
+    <button id="close-menu" class="close-btn">✖</button>
+    <div class="top-section">
+        <div class="user-profile">
+            <img src="img/usuario.png" alt="Foto do usuário">
+            <p>Analista Service Desk</p>
+        </div>
+        <button id="dark-mode-toggle" class="mode-toggle">🌓</button>
+    </div>
+
+    <ul class="menu-options">
+        <a href="colaborador.html"> <li>COLABORADORES</li> </a>
+        <a href="faixa.html"> <li>FAIXA HORÁRIO</li> </a>
+        <li id="ponto-dropdown">PONTO </li> 
+        <ul id="ponto-submenu" class="submenu hidden">
+            <a href="ponto.html"><li>Bater ponto</li> </a>
+            <li>Tratamento de ponto</li>
+                <li>Relatório</li>
+                <li>Painel de horas</li>
+            </ul>
+        </li>
+        <li>FÉRIAS</li>
+        <a href="empresa.html"><li>EMPRESA</li></a>
+
+    </ul>
+
+    <div class="bottom-options">
+        <a href="ajustes.html"><button id="settings">Ajuste</button></a>
+       <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
+    </div>
+</nav>
+
+   
+ 
+
+<div class="form-container">
+    <form class="profile-form">
+        <!-- Upload de imagem -->
+        <div class="logo-upload">
+            <label for="profileImage">Foto de Perfil</label>
+            <div id="drop-area">
+                <p>Arraste arquivo aqui ou clique para adicionar</p>
+                <input type="file" id="profileImage" name="profileImage" accept="image/*">
+            </div>
+        </div>
+        <!-- Nome -->
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" value="Nome do Usuário" readonly>
+        </div>
+        <!-- Data de nascimento -->
+        <div class="form-group">
+            <label for="birthDate">Data de Nascimento</label>
+            <input type="date" id="birthDate" name="birthDate" value="1990-01-01" readonly>
+        </div>
+        <!-- Cargo -->
+        <div class="form-group">
+            <label for="position">Cargo</label>
+            <input type="text" id="position" name="position" value="Analista Service Desk" readonly>
+        </div>
+        <!-- Telefone -->
+        <div class="form-group">
+            <label for="phone">Telefone</label>
+            <input type="tel" id="phone" name="phone" value="(11) 98765-4321">
+        </div>
+        <!-- E-mail -->
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" value="usuario@email.com">
+        </div>
+        <!-- Usuário -->
+        <div class="form-group">
+            <label for="username">Usuário</label>
+            <input type="text" id="username" name="username" value="usuario123" readonly>
+        </div>
+        <!-- Botões de ação -->
+        <div class="form-actions">
+            <button type="reset" class="btn cancel-btn">Descartar</button>
+            <button type="submit" class="btn save-btn">Salvar</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

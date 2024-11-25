@@ -8,9 +8,11 @@
     <!--CSS -->
     <link rel="stylesheet" href="css/colaborador.css">
     <link rel="stylesheet" href="css/padrao.css">
+    
 
     <!-- ICONE HOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     
     <!-- Incluindo bibliotecas JS -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
@@ -65,10 +67,12 @@
                         </ul>
                     </li>
                     <li>FÉRIAS</li>
+                    <a href="empresa.html"><li>EMPRESA</li></a>
+
                 </ul>
 
                 <div class="bottom-options">
-                    <button id="settings">Ajuste</button>
+                    <a href="ajustes.html"><button id="settings">Ajuste</button></a>
                     <a href="index.html"> <button  class="button_logout" id="logout">Sair</button> </a>
                 </div>
             </nav>
@@ -104,12 +108,15 @@
     <div class="table-container">
         <div class="table-controls">
             <input type="text" id="searchInput" placeholder="Pesquisar por nome...">
+
+            <!-- SELEÇÃO DO FILTRO POR STATUS -->
             <select id="filterSelect">
-                <option value="">Filtrar por idade</option>
-                <option value="20-29">20-29</option>
-                <option value="30-39">30-39</option>
-                <option value="40-49">40-49</option>
+                <option value="">Todos</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
             </select>
+            
+            
             <button id="downloadBtn">Baixar Planilha</button>
         </div>
     
@@ -123,6 +130,7 @@
                     <th>Telefone</th>
                     <th>Função</th>
                     <th>Data Nascimento</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -134,52 +142,16 @@
                     <td>62 99325-3025</td>
                     <td>Analista service desk</td>
                     <td>01/03/1999</td>
+                    <td>
+                        <button class="edit-btn" data-row="0"><i class="fa fa-pencil"></i></button>
+                        <button class="pause-btn" data-row="0"><i class="fa fa-pause"></i></button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>Maria</td>
-                    <td>125.235.758-75</td>
-                    <td>Ativo</td>
-                    <td>Email@gmail.com</td>
-                    <td>62 99325-3025</td>
-                    <td>Analista service desk</td>
-                    <td>01/03/1999</td>
-                </tr>
-                <tr>
-                    <td>Maria</td>
-                    <td>125.235.758-75</td>
-                    <td>Ativo</td>
-                    <td>Email@gmail.com</td>
-                    <td>62 99325-3025</td>
-                    <td>Analista service desk</td>
-                    <td>01/03/1999</td>
-                </tr>
-                <tr>
-                    <td>Maria</td>
-                    <td>125.235.758-75</td>
-                    <td>Ativo</td>
-                    <td>Email@gmail.com</td>
-                    <td>62 99325-3025</td>
-                    <td>Analista service desk</td>
-                    <td>01/03/1999</td>
-                </tr>
-                <tr>
-                    <td>Maria</td>
-                    <td>125.235.758-75</td>
-                    <td>Ativo</td>
-                    <td>Email@gmail.com</td>
-                    <td>62 99325-3025</td>
-                    <td>Analista service desk</td>
-                    <td>01/03/1999</td>
-                </tr>
-                <tr>
-                    <td>Maria</td>
-                    <td>125.235.758-75</td>
-                    <td>Ativo</td>
-                    <td>Email@gmail.com</td>
-                    <td>62 99325-3025</td>
-                    <td>Analista service desk</td>
-                    <td>01/03/1999</td>
-                </tr>
+                <!-- Repetir estrutura para demais linhas -->
+            </tbody>
+        </table>
+
+
                 <!-- Mais linhas aqui -->
             </tbody>
         </table>
@@ -330,6 +302,7 @@
             <button type="submit">Salvar</button>
             
         </div>
+
 
         </form><!-- FINAL FORM -->
         

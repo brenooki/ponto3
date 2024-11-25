@@ -1,0 +1,375 @@
+/* Reset básico para margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0px;
+}
+
+/* Estilo para o cabeçalho */
+header {
+    background: linear-gradient(to right, #1a8bba, #12273c);;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* ESTILIZAÇÃO DO ÍCONE HOME */
+.home-icon {
+    padding: 15px;
+    border-radius: 50%;
+    background-color: var(--background-gradient);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+
+.home-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+.home-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.colabsTitle {
+    font-size: 51vw;
+}
+
+.titulo_pagina {
+    text-align: center;
+    font-size: 2em;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.user-info {
+    font-size: 1.5vh;
+}
+
+.header-right button {
+    background: none;   
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Estilo para o menu lateral recolhível */
+nav {
+    width: 300px;
+    max-width: 100%;
+    background-color: #2C3E50;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 20px;
+    display: none; /* Inicialmente oculto */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+    transform: translateX(100%);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    overflow-y: auto; /* Adiciona rolagem quando necessário */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaço entre topo, opções e rodapé */
+}
+
+nav.visible {
+    display: flex;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Adiciona o desfoque na tela principal quando o menu está aberto */
+.main-content.blur {
+    filter: blur(5px); /* Aplica o efeito de desfoque */
+    transition: filter 0.3s ease-in-out;
+}
+
+.main-content.shifted {
+    margin-right: 300px; /* Move a tela principal para a esquerda, criando espaço para o menu */
+    transition: margin-right 0.3s ease-in-out;
+}
+
+/* Botão de fechar o menu */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ECF0F1;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #E74C3C;
+}
+
+/* Topo do menu lateral */
+.top-section {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.user-profile {
+    margin-bottom: 15px;
+}
+
+.user-profile img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #ECF0F1;
+    margin-bottom: 10px;
+}
+
+.user-profile p {
+    color: #ECF0F1;
+    font-weight: bold;
+}
+
+/* Botão de alternar modo escuro/claro */
+.mode-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ECF0F1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.mode-toggle:hover {
+    color: #F39C12;
+}
+
+/* Estilização das opções do menu */
+.menu-options {
+    list-style: none;
+    margin-top: 30px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre os itens */
+}
+
+.menu-options a {
+    text-decoration: none;
+}
+
+.menu-options li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #34495E;
+    color: #ECF0F1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-options li:hover {
+    background-color: #1ABC9C;
+    transform: translateX(5px);
+}
+
+/* Estilo do submenu */
+.submenu {
+    list-style: none;
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 2px solid #ECF0F1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaçamento entre os itens */
+}
+
+.submenu.hidden {
+    display: none; /* Oculta por padrão */
+}
+
+.submenu li {
+    padding-left: 10px; /* Indenta os itens do submenu */
+    padding: 8px;
+    background-color: #3C5972;
+    color: #ECF0F1;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submenu li:hover {
+    background-color: #1ABC9C;
+}
+
+/* Opções da parte inferior */
+.bottom-options {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre botões */
+}
+
+.bottom-options button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #E74C3C;
+    color: #ECF0F1;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.bottom-options button:hover {
+    background-color: #C0392B;
+}
+
+.button_logout {
+    font-size: 16px;
+    color: #ECF0F1;
+}
+
+/* Modo escuro */
+body.dark-mode {
+    background-color: #554b4b8e;
+    color: #000000;
+}
+
+header.dark-mode {
+    background-color: #000000;
+}
+
+nav.dark-mode {
+    background-color: #2b2525;
+}
+
+.bottom-options.dark-mode button {
+    background-color: #777;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        padding: 15px;
+        height: 100vh; /* Certifica-se de ocupar toda a altura */
+    }
+
+    .close-btn {
+        top: 10px;
+        right: 10px;
+    }
+
+    .top-section {
+        margin-top: 10%;
+    }
+
+    .user-profile img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .menu-options li {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .bottom-options button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* Em telas menores, a margem da tela principal será menor */
+    .main-content.shifted {
+        margin-right: 100%;
+    }
+}
+
+/* Dashboard indicadores */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.indicator {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(50% - 10px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s;
+}
+
+.indicator:hover {
+    background-color: #dddddd;
+}
+
+.icon {
+    width: 36px;
+    color: #555;
+}
+
+.info {
+    text-align: right;
+}
+
+.info p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+.info h2 {
+    font-size: 28px;
+    margin: 5px 0;
+    color: #000;
+}
+
+.info a {
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .indicator {
+        width: 100%;
+    }
+}
